@@ -1,6 +1,7 @@
-package com.redsponge.coolapp;
+package com.redsponge.coolapp.projects;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -10,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coolapp.R;
-import com.redsponge.coolapp.util.alert.AlertUtils;
 
 import java.util.Locale;
 import java.util.Random;
@@ -30,10 +30,20 @@ public class CatchTheButtonActivity extends Activity {
     private int screenW;
     private int screenH;
 
+    private Toast[] messages;
+    private int color = 0xFFAAAAAA;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catch_the_button);
+
+        messages = new Toast[] {
+            toast("Hey!"),
+            toast("Stop it!"),
+            toast("Ouch!"),
+            toast("Don't you dare press me again"),
+        };
 
         buttonToCatch = findViewById(R.id.buttonToCatch);
         tvNumClicks = findViewById(R.id.tvNumClicked);
@@ -44,7 +54,7 @@ public class CatchTheButtonActivity extends Activity {
         screenW = metrics.widthPixels - 200;
         screenH = metrics.heightPixels - 200;
 
-
+        buttonToCatch.setBackgroundColor(color);
 
         random = new Random();
 
@@ -69,8 +79,19 @@ public class CatchTheButtonActivity extends Activity {
     }
 
     public void caughtButton(View view) {
-        Toast.makeText(this, "Ouch! Rude!", Toast.LENGTH_SHORT).show();
         clicks++;
         tvNumClicks.setText(String.format(Locale.UK, "Times Clicked: %d", clicks));
+
+        if(clicks % 10 == 0) {
+            messages[random.nextInt(messages.length)].show();
+            if((color & 0x00FF0000) != 0x00FF0000) {
+                color += 0x00110000;
+                buttonToCatch.setBackgroundColor(color);
+            }
+        }
+    }
+
+    private Toast toast(String s) {
+        return Toast.makeText(this, s, Toast.LENGTH_LONG);
     }
 }

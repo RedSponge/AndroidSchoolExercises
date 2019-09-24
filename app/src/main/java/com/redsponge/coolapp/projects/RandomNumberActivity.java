@@ -1,4 +1,4 @@
-package com.redsponge.coolapp;
+package com.redsponge.coolapp.projects;
 
 import android.app.Activity;
 import android.content.Intent;

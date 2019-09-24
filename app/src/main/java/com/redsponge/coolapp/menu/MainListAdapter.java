@@ -1,4 +1,4 @@
-package com.redsponge.coolapp;
+package com.redsponge.coolapp.menu;
 
 import android.content.Context;
 import android.content.Intent;

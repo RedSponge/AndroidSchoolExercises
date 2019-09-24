@@ -9,16 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.redsponge.coolapp.MainActivity">
+        <activity android:name="com.redsponge.coolapp.menu.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.redsponge.coolapp.CatchTheButtonActivity"/>
-        <activity android:name="com.redsponge.coolapp.RandomNumberActivity"/>
-        <activity android:name="com.redsponge.coolapp.RandomColourGenerator"/>
+        <activity android:name="com.redsponge.coolapp.projects.CatchTheButtonActivity"/>
+        <activity android:name="com.redsponge.coolapp.projects.RandomNumberActivity"/>
+        <activity android:name="com.redsponge.coolapp.projects.RandomColourGenerator"/>
+        <activity android:name="com.redsponge.coolapp.projects.SendSMSActivity"/>
     </application>
 
 </manifest>

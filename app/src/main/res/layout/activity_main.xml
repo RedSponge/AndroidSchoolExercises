@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="8">
+    android:weightSum="9">
 
     <TextView
         android:layout_width="match_parent"
@@ -44,5 +44,11 @@
         android:id="@+id/listViewContents"
         android:layout_width="match_parent"
         android:layout_height="0dp" android:layout_weight="6.5"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1"
+        android:text="Send SMS" android:textSize="24sp" android:fontFamily="monospace"
+        android:onClick="sendSMS"/>
 
 </LinearLayout>
