@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="10">
 
+    <TextView
+        android:id="@+id/tvNumClicked"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:text="Times Clicked: 0"
+        android:fontFamily="monospace"
+        android:textSize="32sp"
+        android:layout_height="0dp" android:layout_weight="1" />
     <Button
         android:id="@+id/buttonToCatch"
         android:layout_width="100dp"
-        android:layout_height="50dp" android:text="Click me" />
+        android:layout_height="100dp" android:text="Dont Click Me Thx"
+        android:onClick="caughtButton"/>
 
 </LinearLayout>

@@ -1,8 +1,10 @@
-package com.example.coolapp;
+package com.redsponge.coolapp;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
+
+import com.example.coolapp.R;
 
 public class MainActivity extends Activity {
 

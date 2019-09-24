@@ -1,8 +1,10 @@
-package com.example.coolapp;
+package com.redsponge.coolapp;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.coolapp.R;
 
 import java.util.Random;
 

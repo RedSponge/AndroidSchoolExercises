@@ -1,4 +1,4 @@
-package com.example.coolapp;
+package com.redsponge.coolapp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.coolapp.R;
 
 import java.util.Objects;
 
