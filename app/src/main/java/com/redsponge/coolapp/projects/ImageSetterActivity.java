@@ -10,6 +10,9 @@ import android.widget.ImageView;
 
 import com.example.coolapp.R;
 
+/**
+ *
+ */
 public class ImageSetterActivity extends Activity {
 
     private int IMAGE_TAKEN_ACTION = 1;
