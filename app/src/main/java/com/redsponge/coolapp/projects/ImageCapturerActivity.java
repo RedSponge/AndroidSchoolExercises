@@ -13,7 +13,7 @@ import com.example.coolapp.R;
 /**
  *
  */
-public class ImageSetterActivity extends Activity {
+public class ImageCapturerActivity extends Activity {
 
     private int IMAGE_TAKEN_ACTION = 1;
     private ImageView imgDisplay;
@@ -21,7 +21,7 @@ public class ImageSetterActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_setter);
+        setContentView(R.layout.activity_image_capturer);
 
         imgDisplay = findViewById(R.id.imgDisplay);
     }
