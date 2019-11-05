@@ -20,6 +20,8 @@
         <activity android:name="com.redsponge.coolapp.projects.RandomNumberActivity"/>
         <activity android:name="com.redsponge.coolapp.projects.RandomColourGenerator"/>
         <activity android:name="com.redsponge.coolapp.projects.SendSMSActivity"/>
+        <activity android:name="com.redsponge.coolapp.projects.ImageSetterActivity"/>
     </application>
+
 
 </manifest>

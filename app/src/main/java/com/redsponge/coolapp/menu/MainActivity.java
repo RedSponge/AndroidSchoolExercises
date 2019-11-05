@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.example.coolapp.R;
+import com.redsponge.coolapp.projects.ImageSetterActivity;
 import com.redsponge.coolapp.projects.SendSMSActivity;
 import com.redsponge.coolapp.projects.CatchTheButtonActivity;
 import com.redsponge.coolapp.projects.RandomColourGenerator;
@@ -32,5 +33,6 @@ public class MainActivity extends Activity {
         adapter.add(new MenuEntry("Random Number Generator", "1", RandomNumberActivity.class));
         adapter.add(new MenuEntry("Catch The Button", "1.5", CatchTheButtonActivity.class));
         adapter.add(new MenuEntry("Send SMS", "2", SendSMSActivity.class));
+        adapter.add(new MenuEntry("Image Capturer", "2.5", ImageSetterActivity.class));
     }
 }
