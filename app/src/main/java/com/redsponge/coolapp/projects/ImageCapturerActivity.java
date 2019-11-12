@@ -36,9 +36,6 @@ public class ImageCapturerActivity extends Activity {
 
     public void setImage(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        intent.setType("image/*");
-//
-//        String[] mimeTypes = new String[] {"image/jpeg", "image/png"};
         startActivityForResult(intent, IMAGE_TAKEN_ACTION);
     }
 }
