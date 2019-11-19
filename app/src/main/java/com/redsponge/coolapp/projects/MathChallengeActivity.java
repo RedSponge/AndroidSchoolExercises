@@ -1,6 +1,7 @@
 package com.redsponge.coolapp.projects;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -80,6 +81,7 @@ public class MathChallengeActivity extends Activity {
 
     private void updateGuessDisplay() {
         tvAnswerDisplay.setText("" + numberGuess);
+        tvAnswerDisplay.setTextColor(Color.BLACK);
     }
 
     public void deleteGuess(View view) {
@@ -92,7 +94,7 @@ public class MathChallengeActivity extends Activity {
             generateQuestion();
             deleteGuess(null);
         } else {
-            tvAnswerDisplay.setError("");
+            tvAnswerDisplay.setTextColor(Color.RED);
         }
     }
 
