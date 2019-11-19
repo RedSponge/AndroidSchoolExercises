@@ -88,7 +88,12 @@ public class MathChallengeActivity extends Activity {
     }
 
     public void tryGuess(View view) {
-        Toast.makeText(this, "Trying guess", Toast.LENGTH_SHORT).show();
+        if(numberGuess == question.apply(operandA, operandB)) {
+            generateQuestion();
+            deleteGuess(null);
+        } else {
+            tvAnswerDisplay.setError("");
+        }
     }
 
     private void generateQuestion() {
@@ -96,6 +101,14 @@ public class MathChallengeActivity extends Activity {
         operandA = rnd.nextInt(20 - 2 + 1) + 2;
         operandB = rnd.nextInt(20 - 2 + 1) + 2;
 
+        if(operandA < operandB) swapOperands();
+
         tvQuestion.setText(String.format(Locale.UK, "%s = ?", question.getRepresentation(operandA, operandB)));
+    }
+
+    private void swapOperands() {
+        int c = operandA;
+        operandA = operandB;
+        operandB = c;
     }
 }
