@@ -43,7 +43,7 @@
         <TableRow android:layout_weight="1">
             <Button android:id="@+id/buttonZero" style="@style/MathChallengeDigit"/>
             <Button android:id="@+id/buttonDelete" style="@style/MathChallengeDigit" android:text="Delete" android:onClick="deleteGuess"/>
-            <Button android:id="@+id/buttonTry" style="@style/MathChallengeDigit" android:text="Try" android:onClick="tryGuess"/>
+            <Button android:id="@+id/buttonTry" style="@style/MathChallengeDigit" android:text="Accept" android:onClick="tryGuess"/>
         </TableRow>
     </TableLayout>
 

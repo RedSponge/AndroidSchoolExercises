@@ -8,6 +8,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coolapp.R;
+import com.redsponge.coolapp.projects.math.Operator;
+
+import java.util.Locale;
+import java.util.Random;
 
 public class MathChallengeActivity extends Activity {
 
@@ -20,10 +24,16 @@ public class MathChallengeActivity extends Activity {
     private TextView tvAnswerDisplay;
     private int numberGuess;
 
+    private Operator question;
+    private int operandA, operandB;
+
+    private Random rnd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math_challenge);
+        rnd = new Random();
 
         digitButtonIds = new int[] {
                 R.id.buttonZero,
@@ -44,6 +54,8 @@ public class MathChallengeActivity extends Activity {
         tvQuestion = findViewById(R.id.tvQuestion);
         tvAnswerDisplay = findViewById(R.id.tvAnswerDisplay);
         numberGuess = 0;
+
+        generateQuestion();
     }
 
     private void setupDigitButtons() {
@@ -77,5 +89,13 @@ public class MathChallengeActivity extends Activity {
 
     public void tryGuess(View view) {
         Toast.makeText(this, "Trying guess", Toast.LENGTH_SHORT).show();
+    }
+
+    private void generateQuestion() {
+        question = Operator.Operators.ALL[rnd.nextInt(Operator.Operators.ALL.length)];
+        operandA = rnd.nextInt(20 - 2 + 1) + 2;
+        operandB = rnd.nextInt(20 - 2 + 1) + 2;
+
+        tvQuestion.setText(String.format(Locale.UK, "%s = ?", question.getRepresentation(operandA, operandB)));
     }
 }
