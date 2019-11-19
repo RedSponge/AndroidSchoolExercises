@@ -1,15 +1,16 @@
 package com.redsponge.coolapp.projects;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.coolapp.R;
 import com.redsponge.coolapp.projects.math.Operator;
+import com.redsponge.coolapp.util.alert.AlertUtils;
 
 import java.util.Locale;
 import java.util.Random;
@@ -29,6 +30,9 @@ public class MathChallengeActivity extends Activity {
     private int operandA, operandB;
 
     private Random rnd;
+
+    private int questionNum;
+    private int numQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +60,11 @@ public class MathChallengeActivity extends Activity {
         tvAnswerDisplay = findViewById(R.id.tvAnswerDisplay);
         numberGuess = 0;
 
+        numQuestions = 10;
+        questionNum = 1;
+
         generateQuestion();
+        updateCurrentQuestionDisplay();
     }
 
     private void setupDigitButtons() {
@@ -89,13 +97,39 @@ public class MathChallengeActivity extends Activity {
         updateGuessDisplay();
     }
 
+    public void updateCurrentQuestionDisplay() {
+        tvQuestionNumberDisplay.setText(String.format(Locale.UK, getString(R.string.math_challenge_current_question), questionNum, numQuestions));
+    }
+
     public void tryGuess(View view) {
         if(numberGuess == question.apply(operandA, operandB)) {
+            questionNum++;
+            if(questionNum > numQuestions) {
+                winChallenge();
+                return;
+            }
+            updateCurrentQuestionDisplay();
             generateQuestion();
             deleteGuess(null);
         } else {
             tvAnswerDisplay.setTextColor(Color.RED);
         }
+    }
+
+    private void winChallenge() {
+        AlertUtils.showConfirmPrompt(this, "You Won!", "Would you like to play again?", (a, b) -> restart(), (a, b) -> end());
+    }
+
+    private void end() {
+        finish();
+    }
+
+    private void restart() {
+        questionNum = 1;
+
+        updateCurrentQuestionDisplay();
+        generateQuestion();
+        deleteGuess(null);
     }
 
     private void generateQuestion() {

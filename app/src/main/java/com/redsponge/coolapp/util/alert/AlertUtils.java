@@ -79,16 +79,14 @@ public class AlertUtils {
      * @param message The message of the popup
      * @param accept What to do when 'Yes' is pressed
      */
-    public static void showConfirmPrompt(Context ctx, String title, String message, DialogInterface.OnClickListener accept) {
+    public static void showConfirmPrompt(Context ctx, String title, String message, DialogInterface.OnClickListener accept, DialogInterface.OnClickListener decline) {
         new AlertDialog.Builder(ctx)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("Yes", accept)
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
+                .setNegativeButton("No", (dialog, which) -> {
+                    if(decline != null) decline.onClick(dialog, which);
+                    dialog.cancel();
                 })
                 .show();
     }
