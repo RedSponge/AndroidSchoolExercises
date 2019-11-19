@@ -11,13 +11,12 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.GridLayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.coolapp.R;
-
 import androidx.annotation.Nullable;
+
+import com.example.coolapp.R;
 
 public class ImageSelectorActivity extends Activity {
 
@@ -80,22 +79,21 @@ public class ImageSelectorActivity extends Activity {
 
 
             Bitmap bmp = BitmapFactory.decodeFile(imgDecodableString);
-            // TODO: Fix this, doesn't work for some reason
             imgDisplay.setImageBitmap(bmp);
         }
     }
 
     private void requireGalleryPicture() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        //Create an Intent with action as ACTION_PICK
+        Intent intent=new Intent(Intent.ACTION_PICK);
+        // Sets the type as image/*. This ensures only components of type image are selected
         intent.setType("image/*");
+        //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
+        String[] mimeTypes = {"image/jpeg", "image/png"};
+        intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+        // Launching the Intent
+        startActivityForResult(intent,GALLERY_CHOICE_ACTION);
 
-        Intent pickIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        pickIntent.setType("image/*");
-
-        Intent chooserIntent = Intent.createChooser(intent, "Select Image");
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
-
-        startActivityForResult(intent, GALLERY_CHOICE_ACTION);
     }
 
     private void requireCameraPicture() {

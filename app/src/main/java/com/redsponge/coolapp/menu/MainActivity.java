@@ -8,6 +8,7 @@ import com.example.coolapp.R;
 
 public class MainActivity extends Activity {
 
+    @SuppressWarnings("FieldCanBeLocal")
     private ListView listViewContents;
     private MainListAdapter adapter;
 
