@@ -18,5 +18,13 @@
         <item name="android:fontFamily">monospace</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="MathChallengeDigit">
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:gravity">center</item>
+    </style>
 
 </resources>
