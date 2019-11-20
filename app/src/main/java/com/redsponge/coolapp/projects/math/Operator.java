@@ -5,12 +5,53 @@ import java.util.Locale;
 public class Operator {
 
     public static class Operators {
-        public static final Operator ADD = new Operator("+", (a, b) -> a + b);
-        public static final Operator SUB = new Operator("-", (a, b) -> a - b);
-        public static final Operator MUL = new Operator("*", (a, b) -> a * b);
-        public static final Operator DIV = new Operator("/", (a, b) -> a / b);
+        public static final Operator ADD = new Operator("+", new OperationAdapter() {
+            @Override
+            public int apply(Operand a, Operand b) {
+                return a.getVal() + b.getVal();
+            }
+        });
+
+        public static final Operator SUB = new Operator("-", new OperationAdapter() {
+            @Override
+            public void prepare(Operand a, Operand b) {
+                if(b.getVal() > a.getVal()) Operand.swap(a, b);
+            }
+
+            @Override
+            public int apply(Operand a, Operand b) {
+                return a.getVal() - b.getVal();
+            }
+        });
+
+        public static final Operator MUL = new Operator("*", new OperationAdapter() {
+            @Override
+            public int apply(Operand a, Operand b) {
+                return a.getVal() * b.getVal();
+            }
+        });
+
+        public static final Operator DIV = new Operator("/", new OperationAdapter() {
+            @Override
+            public void prepare(Operand a, Operand b) {
+                if(b.getVal() > a.getVal()) Operand.swap(a, b);
+                a.setVal((a.getVal() / b.getVal()) * b.getVal());
+            }
+
+            @Override
+            public int apply(Operand a, Operand b) {
+                return a.getVal() / b.getVal();
+            }
+        });
+
+        public static final Operator POWER = new Operator("^", new OperationAdapter() {
+            @Override
+            public int apply(Operand a, Operand b) {
+                return (int) Math.pow(a.getVal(), b.getVal());
+            }
+        });
         
-        public static final Operator[] ALL = {ADD, SUB, MUL, DIV};
+        public static final Operator[] ALL = {ADD, SUB, MUL, DIV, POWER};
     }
 
     private String sign;
@@ -37,17 +78,32 @@ public class Operator {
         this.operation = operation;
     }
 
-    public int apply(int a, int b) {
+    public int apply(Operand a, Operand b) {
         return operation.apply(a, b);
     }
 
-    public String getRepresentation(int a, int b) {
-        return String.format(Locale.UK, "%d %s %d", a, sign, b);
+    public void prepare(Operand a, Operand b) {
+        operation.prepare(a, b);
     }
 
-    @FunctionalInterface
+    public String getRepresentation(Operand a, Operand b) {
+        return String.format(Locale.UK, "%s %s %s", a, sign, b);
+    }
+
     public interface Operation {
-        int apply(int a, int b);
+        void prepare(Operand a, Operand b); // Prepares the randomly generated options. for example: when doing -, a must be bigger than b
+        int apply(Operand a, Operand b); // Finds the solution
+    }
+
+
+    public static abstract class OperationAdapter implements Operation {
+        @Override
+        public void prepare(Operand a, Operand b) {}
+
+        @Override
+        public int apply(Operand a, Operand b) {
+            return 0;
+        }
     }
 
 }

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.coolapp.R;
+import com.redsponge.coolapp.projects.math.Operand;
 import com.redsponge.coolapp.projects.math.Operator;
 import com.redsponge.coolapp.util.alert.AlertUtils;
 
@@ -27,7 +28,7 @@ public class MathChallengeActivity extends Activity {
     private int numberGuess;
 
     private Operator question;
-    private int operandA, operandB;
+    private Operand operandA, operandB;
 
     private Random rnd;
 
@@ -62,6 +63,9 @@ public class MathChallengeActivity extends Activity {
 
         numQuestions = 10;
         questionNum = 1;
+
+        operandA = new Operand(0);
+        operandB = new Operand(0);
 
         generateQuestion();
         updateCurrentQuestionDisplay();
@@ -134,17 +138,10 @@ public class MathChallengeActivity extends Activity {
 
     private void generateQuestion() {
         question = Operator.Operators.ALL[rnd.nextInt(Operator.Operators.ALL.length)];
-        operandA = rnd.nextInt(20 - 2 + 1) + 2;
-        operandB = rnd.nextInt(20 - 2 + 1) + 2;
-
-        if(operandA < operandB) swapOperands();
+        operandA.setVal(rnd.nextInt(20 - 2 + 1) + 2);
+        operandB.setVal(rnd.nextInt(20 - 2 + 1) + 2);
+        question.prepare(operandA, operandB);
 
         tvQuestion.setText(String.format(Locale.UK, "%s = ?", question.getRepresentation(operandA, operandB)));
-    }
-
-    private void swapOperands() {
-        int c = operandA;
-        operandA = operandB;
-        operandB = c;
     }
 }
