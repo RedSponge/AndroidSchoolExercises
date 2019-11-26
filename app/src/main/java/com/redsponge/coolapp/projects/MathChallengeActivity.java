@@ -61,14 +61,17 @@ public class MathChallengeActivity extends Activity {
         tvAnswerDisplay = findViewById(R.id.tvAnswerDisplay);
         numberGuess = 0;
 
-        numQuestions = 10;
-        questionNum = 1;
-
         operandA = new Operand(0);
         operandB = new Operand(0);
 
-        generateQuestion();
-        updateCurrentQuestionDisplay();
+        AlertUtils.showNumberPrompt(this, "How Many Questions?", (v) -> {
+            numQuestions = v;
+
+            generateQuestion();
+            updateCurrentQuestionDisplay();
+        }, 10, 3);
+        questionNum = 1;
+
     }
 
     private void setupDigitButtons() {

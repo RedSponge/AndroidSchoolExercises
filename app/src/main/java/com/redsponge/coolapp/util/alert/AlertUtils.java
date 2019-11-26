@@ -100,11 +100,23 @@ public class AlertUtils {
                 .setTitle(title)
                 .setView(spinner)
                 .setPositiveButton("OK", new OnSpinnerAcceptClickAdapter<>(spinner, spinnerAcceptListener))
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel())
+                .show();
+    }
+
+    public static void showNumberPrompt(Context ctx, String title, OnNumberAcceptListener onNumberAcceptListener, int defaultValue, int maxLength) {
+        EditText input = new EditText(ctx);
+        input.setHint("" + defaultValue);
+        input.setText("" + defaultValue);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input.setMaxLines(maxLength);
+        new AlertDialog.Builder(ctx)
+                .setTitle(title)
+                .setView(input)
+                .setPositiveButton("OK", (d, w) -> onNumberAcceptListener.onNumberEntered(Integer.parseInt(input.getText().toString())))
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    onNumberAcceptListener.onNumberEntered(defaultValue);
+                    dialog.cancel();
                 })
                 .show();
     }
