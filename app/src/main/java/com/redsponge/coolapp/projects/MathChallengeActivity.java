@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.coolapp.R;
+import com.redsponge.coolapp.projects.math.MathDifficulty;
 import com.redsponge.coolapp.projects.math.Operand;
 import com.redsponge.coolapp.projects.math.Operator;
 import com.redsponge.coolapp.util.alert.AlertUtils;
@@ -41,6 +43,7 @@ public class MathChallengeActivity extends Activity {
 
     private int numMistakes;
 
+    private MathDifficulty mathDifficulty;
     private Animation animShake;
 
     @Override
@@ -79,12 +82,17 @@ public class MathChallengeActivity extends Activity {
 
         tvNumMistakes.setText(String.format(getString(R.string.math_challenge_num_mistakes), numMistakes));
 
-        AlertUtils.showNumberPrompt(this, "How Many Questions?", (v) -> {
-            numQuestions = v;
+        AlertUtils.showSpinnerPrompt(this, "Choose Difficulty", new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, MathDifficulty.values()),
+                (md, i) -> {
+                    mathDifficulty = md;
 
-            generateQuestion();
-            updateCurrentQuestionDisplay();
-        }, 10, 3);
+                    AlertUtils.showNumberPrompt(this, "How Many Questions?", (v) -> {
+                        numQuestions = v;
+
+                        generateQuestion();
+                        updateCurrentQuestionDisplay();
+                    }, 10, 3);
+                }, 0);
         questionNum = 1;
     }
 
@@ -154,9 +162,9 @@ public class MathChallengeActivity extends Activity {
     }
 
     private void generateQuestion() {
-        question = Operator.Operators.ALL[rnd.nextInt(Operator.Operators.ALL.length)];
-        operandA.setVal(rnd.nextInt(20 - 2 + 1) + 2);
-        operandB.setVal(rnd.nextInt(20 - 2 + 1) + 2);
+        question = mathDifficulty.getOperators()[rnd.nextInt(mathDifficulty.getOperators().length)];
+        operandA.setVal(rnd.nextInt(mathDifficulty.getMaxNumber() - 2 + 1) + 2);
+        operandB.setVal(rnd.nextInt(mathDifficulty.getMaxNumber() - 2 + 1) + 2);
         question.prepare(operandA, operandB);
 
         tvQuestion.setText(String.format(Locale.UK, "%s = ?", question.getRepresentation(operandA, operandB)));
