@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CoolApp</string>
     <string name="math_challenge_current_question">%d out of %d</string>
+    <string name="math_challenge_num_mistakes">Mistakes: %d</string>
 </resources>

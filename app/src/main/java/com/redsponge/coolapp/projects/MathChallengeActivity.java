@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -25,6 +27,8 @@ public class MathChallengeActivity extends Activity {
     private TextView tvQuestionNumberDisplay;
     private TextView tvQuestion;
     private TextView tvAnswerDisplay;
+    private TextView tvNumMistakes;
+
     private int numberGuess;
 
     private Operator question;
@@ -34,6 +38,10 @@ public class MathChallengeActivity extends Activity {
 
     private int questionNum;
     private int numQuestions;
+
+    private int numMistakes;
+
+    private Animation animShake;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +67,17 @@ public class MathChallengeActivity extends Activity {
         tvQuestionNumberDisplay = findViewById(R.id.tvQuestionNumberDisplay);
         tvQuestion = findViewById(R.id.tvQuestion);
         tvAnswerDisplay = findViewById(R.id.tvAnswerDisplay);
+        tvNumMistakes = findViewById(R.id.tvNumMistakes);
+
+        animShake = AnimationUtils.loadAnimation(this, R.anim.shake);
+
         numberGuess = 0;
+        numMistakes = 0;
 
         operandA = new Operand(0);
         operandB = new Operand(0);
+
+        tvNumMistakes.setText(String.format(getString(R.string.math_challenge_num_mistakes), numMistakes));
 
         AlertUtils.showNumberPrompt(this, "How Many Questions?", (v) -> {
             numQuestions = v;
@@ -71,7 +86,6 @@ public class MathChallengeActivity extends Activity {
             updateCurrentQuestionDisplay();
         }, 10, 3);
         questionNum = 1;
-
     }
 
     private void setupDigitButtons() {
@@ -119,7 +133,7 @@ public class MathChallengeActivity extends Activity {
             generateQuestion();
             deleteGuess(null);
         } else {
-            tvAnswerDisplay.setTextColor(Color.RED);
+            didMistake();
         }
     }
 
@@ -146,5 +160,13 @@ public class MathChallengeActivity extends Activity {
         question.prepare(operandA, operandB);
 
         tvQuestion.setText(String.format(Locale.UK, "%s = ?", question.getRepresentation(operandA, operandB)));
+    }
+
+    public void didMistake() {
+        numMistakes++;
+        tvNumMistakes.setText(String.format(getString(R.string.math_challenge_num_mistakes), numMistakes));
+        tvAnswerDisplay.setTextColor(Color.RED);
+        tvAnswerDisplay.startAnimation(animShake);
+
     }
 }

@@ -34,8 +34,7 @@ public class Operator {
         public static final Operator DIV = new Operator("/", new OperationAdapter() {
             @Override
             public void prepare(Operand a, Operand b) {
-                if(b.getVal() > a.getVal()) Operand.swap(a, b);
-                a.setVal((a.getVal() / b.getVal()) * b.getVal());
+                a.setVal((a.getVal() * b.getVal()));
             }
 
             @Override
