@@ -72,8 +72,29 @@ public class Operator {
                 return operation.getSign() + b.getVal();
             }
         });
+
+        public static final Operator FACT = new Operator("!", new OperationAdapter() {
+            @Override
+            public void prepare(Operand a, Operand b) {
+                a.setVal(a.getVal() / 10);
+            }
+
+            @Override
+            public int apply(Operand a, Operand b) {
+                int f = 1;
+                for (int i = 2; i <= a.getVal(); i++) {
+                    f *= i;
+                }
+                return f;
+            }
+
+            @Override
+            public String getRepresentation(Operator operation, Operand a, Operand b) {
+                return a.getVal() + operation.getSign();
+            }
+        });
         
-        public static final Operator[] ALL = {ADD, SUB, MUL, DIV, POWER, SQRT};
+        public static final Operator[] ALL = {ADD, SUB, MUL, DIV, POWER, SQRT, FACT};
     }
 
     private String sign;

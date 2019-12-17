@@ -7,7 +7,6 @@ import android.text.InputType;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
 public class AlertUtils {
 
@@ -63,12 +62,7 @@ public class AlertUtils {
                 .setTitle(title)
                 .setView(text)
                 .setPositiveButton("OK", new OnTextAcceptClickAdapter(text, onOk))
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel())
                 .show();
     }
 
@@ -91,7 +85,22 @@ public class AlertUtils {
                 .show();
     }
 
-    public static <T> void showSpinnerPrompt(Context ctx, String title, ArrayAdapter<T> spinnerAdapter, OnSpinnerAcceptListener<T> spinnerAcceptListener, int initialIndex) {
+    public static <T> void showChoicePrompt(Context ctx, String title, OnChoiceAcceptListener<T> spinnerAcceptListener, T... vals) {
+        String[] displayArr = new String[vals.length];
+
+        for (int i = 0; i < vals.length; i++) {
+            displayArr[i] = vals[i].toString();
+        }
+
+        new AlertDialog.Builder(ctx)
+                .setTitle(title)
+                .setSingleChoiceItems(displayArr, 0, (d, i) -> {
+                    spinnerAcceptListener.accept(vals[i], i);
+                    d.dismiss();
+                }).show();
+    }
+
+    public static <T> void showSpinnerPrompt(Context ctx, String title, ArrayAdapter<T> spinnerAdapter, OnChoiceAcceptListener<T> spinnerAcceptListener, int initialIndex) {
         Spinner spinner = new Spinner(ctx);
         spinner.setAdapter(spinnerAdapter);
         spinner.setSelection(initialIndex);

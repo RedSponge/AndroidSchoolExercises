@@ -6,11 +6,11 @@ import android.widget.Spinner;
 public class OnSpinnerAcceptClickAdapter<T> implements DialogInterface.OnClickListener {
 
     private Spinner spinner;
-    private OnSpinnerAcceptListener<T> onSpinnerAcceptListener;
+    private OnChoiceAcceptListener<T> onChoiceAcceptListener;
 
-    public OnSpinnerAcceptClickAdapter(Spinner spinner, OnSpinnerAcceptListener<T> onSpinnerAcceptListener) {
+    public OnSpinnerAcceptClickAdapter(Spinner spinner, OnChoiceAcceptListener<T> onChoiceAcceptListener) {
         this.spinner = spinner;
-        this.onSpinnerAcceptListener = onSpinnerAcceptListener;
+        this.onChoiceAcceptListener = onChoiceAcceptListener;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class OnSpinnerAcceptClickAdapter<T> implements DialogInterface.OnClickLi
     public void onClick(DialogInterface dialog, int which) {
         T choice = (T) spinner.getSelectedItem();
         if(choice != null) {
-            onSpinnerAcceptListener.accept(choice, spinner.getSelectedItemPosition());
+            onChoiceAcceptListener.accept(choice, spinner.getSelectedItemPosition());
         }
     }
 }

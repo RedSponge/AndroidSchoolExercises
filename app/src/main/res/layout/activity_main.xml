@@ -43,12 +43,6 @@
     <ListView
         android:id="@+id/listViewContents"
         android:layout_width="match_parent"
-        android:layout_height="0dp" android:layout_weight="6.5"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp" android:layout_weight="1"
-        android:text="Send SMS" android:textSize="24sp" android:fontFamily="monospace"
-        android:onClick="sendSMS"/>
+        android:layout_height="0dp" android:layout_weight="7.5"/>
 
 </LinearLayout>

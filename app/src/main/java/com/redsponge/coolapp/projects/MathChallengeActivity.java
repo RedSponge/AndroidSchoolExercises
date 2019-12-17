@@ -82,7 +82,7 @@ public class MathChallengeActivity extends Activity {
 
         tvNumMistakes.setText(String.format(getString(R.string.math_challenge_num_mistakes), numMistakes));
 
-        AlertUtils.showSpinnerPrompt(this, "Choose Difficulty", new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, MathDifficulty.values()),
+        AlertUtils.showChoicePrompt(this, "Choose Difficulty",
                 (md, i) -> {
                     mathDifficulty = md;
 
@@ -92,7 +92,7 @@ public class MathChallengeActivity extends Activity {
                         generateQuestion();
                         updateCurrentQuestionDisplay();
                     }, 10, 3);
-                }, 0);
+                }, MathDifficulty.values());
         questionNum = 1;
     }
 
@@ -154,6 +154,7 @@ public class MathChallengeActivity extends Activity {
     }
 
     private void restart() {
+        finish();
         questionNum = 1;
 
         updateCurrentQuestionDisplay();
@@ -163,8 +164,8 @@ public class MathChallengeActivity extends Activity {
 
     private void generateQuestion() {
         question = mathDifficulty.getOperators()[rnd.nextInt(mathDifficulty.getOperators().length)];
-        operandA.setVal(rnd.nextInt(mathDifficulty.getMaxNumber() - 2 + 1) + 2);
-        operandB.setVal(rnd.nextInt(mathDifficulty.getMaxNumber() - 2 + 1) + 2);
+        operandA.setVal(rnd.nextInt(mathDifficulty.getMaxNumber() - mathDifficulty.getMinNumber() + 1) + mathDifficulty.getMinNumber());
+        operandB.setVal(rnd.nextInt(mathDifficulty.getMaxNumber() - mathDifficulty.getMinNumber() + 1) + mathDifficulty.getMinNumber());
         question.prepare(operandA, operandB);
 
         tvQuestion.setText(String.format(Locale.UK, "%s = ?", question.getRepresentation(operandA, operandB)));
