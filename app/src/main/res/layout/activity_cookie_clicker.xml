@@ -45,6 +45,7 @@
         android:fontFamily="monospace"
         android:textSize="32sp"
         android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"/>
+        android:layout_marginRight="100dp"
+        android:onClick="saveCookies"/>
 
 </LinearLayout>
