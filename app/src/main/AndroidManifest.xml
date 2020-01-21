@@ -23,6 +23,7 @@
         <activity android:name="com.redsponge.coolapp.projects.ImageCapturerActivity"/>
         <activity android:name="com.redsponge.coolapp.projects.ImageSelectorActivity"/>
         <activity android:name="com.redsponge.coolapp.projects.MathChallengeActivity"/>
+        <activity android:name="com.redsponge.coolapp.projects.CookieClickerActivity"/>
     </application>
 
 

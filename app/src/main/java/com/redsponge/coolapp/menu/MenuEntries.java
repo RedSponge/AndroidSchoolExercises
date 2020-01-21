@@ -1,6 +1,7 @@
 package com.redsponge.coolapp.menu;
 
 import com.redsponge.coolapp.projects.CatchTheButtonActivity;
+import com.redsponge.coolapp.projects.CookieClickerActivity;
 import com.redsponge.coolapp.projects.ImageSelectorActivity;
 import com.redsponge.coolapp.projects.ImageCapturerActivity;
 import com.redsponge.coolapp.projects.MathChallengeActivity;
@@ -17,7 +18,8 @@ public class MenuEntries {
             new MenuEntry("Send SMS", "2", SendSMSActivity.class),
             new MenuEntry("Image Capturer", "3", ImageCapturerActivity.class),
             new MenuEntry("Image Selector", "3.5", ImageSelectorActivity.class),
-            new MenuEntry("Math Challenge", "4", MathChallengeActivity.class)
+            new MenuEntry("Math Challenge", "4", MathChallengeActivity.class),
+            new MenuEntry("Cookie Clicker", "5", CookieClickerActivity.class)
     };
 
 }
