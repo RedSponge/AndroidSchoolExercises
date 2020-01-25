@@ -3,9 +3,13 @@ package com.redsponge.coolapp.projects;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Interpolator;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.coolapp.R;
@@ -18,14 +22,20 @@ public class CookieClickerActivity extends Activity {
     private TextView tvCounter;
     private int cookieCount;
 
+    private ImageView ivCookieDisplay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cookie_clicker);
 
         tvCounter = findViewById(R.id.tvCounter);
+        ivCookieDisplay = findViewById(R.id.ivCookieDisplay);
 
-        /*SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_name), MODE_PRIVATE);
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.const_rotate);
+        ivCookieDisplay.startAnimation(anim);
+
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_name), MODE_PRIVATE);
         int storedCookieCount = sharedPref.getInt(getString(R.string.shared_preferences_cookie_clicker_cookie_count), 0);
         updateCookieDisplay();
         if(storedCookieCount != 0) {
@@ -38,12 +48,19 @@ public class CookieClickerActivity extends Activity {
                     (dialog, which) -> {
                         sharedPref.edit().putInt(getString(R.string.shared_preferences_cookie_clicker_cookie_count), 0).apply();
                     });
-        }*/
+        }
     }
 
 
     public void addCookie(View view) {
+        final float base = 1.2f;
+        final float scale = 0.2f;
+        final int duration = 50;
+
         cookieCount++;
+        view.animate().scaleX(base + scale).scaleY(base + scale).setDuration(duration).withEndAction(() -> {
+            view.animate().scaleX(base).scaleY(base).setDuration(duration).start();
+        }).start();
         updateCookieDisplay();
     }
 

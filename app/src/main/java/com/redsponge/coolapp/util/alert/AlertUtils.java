@@ -82,6 +82,7 @@ public class AlertUtils {
                     if(decline != null) decline.onClick(dialog, which);
                     dialog.cancel();
                 })
+                .setCancelable(false)
                 .show();
     }
 
