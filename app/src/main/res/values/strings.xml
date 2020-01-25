@@ -3,4 +3,8 @@
     <string name="math_challenge_current_question">%d out of %d</string>
     <string name="math_challenge_num_mistakes">Mistakes: %d</string>
     <string name="cookie_clicker_counter_display">%d Cookies</string>
+    
+    
+    <string name="shared_preferences_name">RedSpongeAppPreferences</string>
+    <string name="shared_preferences_cookie_clicker_cookie_count">CookieClickerCookieCount</string>
 </resources>
