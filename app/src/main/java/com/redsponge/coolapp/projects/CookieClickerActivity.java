@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.coolapp.R;
 import com.redsponge.coolapp.util.alert.AlertUtils;
@@ -23,6 +24,7 @@ public class CookieClickerActivity extends Activity {
     private int cookieCount;
 
     private ImageView ivCookieDisplay;
+    private Toast saveToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class CookieClickerActivity extends Activity {
                         sharedPref.edit().putInt(getString(R.string.shared_preferences_cookie_clicker_cookie_count), 0).apply();
                     });
         }
+        saveToast = Toast.makeText(this, "Saved Cookies!", Toast.LENGTH_LONG);
     }
 
 
@@ -71,5 +74,6 @@ public class CookieClickerActivity extends Activity {
     public void saveCookies(View view) {
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_name), Context.MODE_PRIVATE);
         sharedPref.edit().putInt(getString(R.string.shared_preferences_cookie_clicker_cookie_count), cookieCount).apply();
+        saveToast.show();
     }
 }
