@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.coolapp.R;
+import com.redsponge.coolapp.R;
 
 import java.util.Random;
 

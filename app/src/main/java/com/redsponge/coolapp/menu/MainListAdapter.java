@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.coolapp.R;
+import com.redsponge.coolapp.R;
 
 import java.util.Objects;
 

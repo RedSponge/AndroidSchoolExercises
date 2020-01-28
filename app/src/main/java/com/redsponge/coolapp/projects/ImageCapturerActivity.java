@@ -8,7 +8,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.coolapp.R;
+import com.redsponge.coolapp.R;
 
 /**
  *

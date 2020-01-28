@@ -1,4 +1,4 @@
-package com.example.coolapp;
+package com.redsponge.coolapp;
 
 import org.junit.Test;
 

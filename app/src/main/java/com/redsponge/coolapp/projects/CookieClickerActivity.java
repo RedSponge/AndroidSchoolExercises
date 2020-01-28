@@ -1,7 +1,10 @@
 package com.redsponge.coolapp.projects;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Interpolator;
 import android.os.Bundle;
@@ -13,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.coolapp.R;
+import com.redsponge.coolapp.R;
 import com.redsponge.coolapp.util.alert.AlertUtils;
 
 public class CookieClickerActivity extends Activity {
@@ -37,8 +40,8 @@ public class CookieClickerActivity extends Activity {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.const_rotate);
         ivCookieDisplay.startAnimation(anim);
 
-        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_name), MODE_PRIVATE);
-        int storedCookieCount = sharedPref.getInt(getString(R.string.shared_preferences_cookie_clicker_cookie_count), 0);
+        int storedCookieCount = getSavedCookies();
+
         updateCookieDisplay();
         if(storedCookieCount != 0) {
             AlertUtils.showConfirmPrompt(this, "Found Saved Cookies!",
@@ -48,12 +51,25 @@ public class CookieClickerActivity extends Activity {
                         updateCookieDisplay();
                     },
                     (dialog, which) -> {
-                        sharedPref.edit().putInt(getString(R.string.shared_preferences_cookie_clicker_cookie_count), 0).apply();
+                        saveCookies(0);
                     });
         }
+
         saveToast = Toast.makeText(this, "Saved Cookies!", Toast.LENGTH_LONG);
     }
 
+    @Override
+    public void onBackPressed() {
+        Log.i(TAG, "onStop: STOPPING");
+        if(cookieCount > 0) {
+            AlertUtils.showConfirmPrompt(this, "Wait a second!", "It seems you have some unsaved cookies! would you like to save them?", (d, w) -> {
+                saveCookies(cookieCount);
+                super.onBackPressed();
+            }, (d, w) -> {
+                super.onBackPressed();
+            });
+        }
+    }
 
     public void addCookie(View view) {
         final float base = 1.2f;
@@ -71,9 +87,20 @@ public class CookieClickerActivity extends Activity {
         tvCounter.setText(getString(R.string.cookie_clicker_counter_display, cookieCount));
     }
 
-    public void saveCookies(View view) {
+    public void saveCookies(int num) {
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_name), Context.MODE_PRIVATE);
-        sharedPref.edit().putInt(getString(R.string.shared_preferences_cookie_clicker_cookie_count), cookieCount).apply();
+        sharedPref.edit().putInt(getString(R.string.shared_preferences_cookie_clicker_cookie_count), num).apply();
+    }
+
+    private int getSavedCookies() {
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_name), Context.MODE_PRIVATE);
+        return sharedPref.getInt(getString(R.string.shared_preferences_cookie_clicker_cookie_count), 0);
+    }
+
+
+    // OnClickListener
+    public void saveCookies(View view) {
+        saveCookies(cookieCount);
         saveToast.show();
     }
 }

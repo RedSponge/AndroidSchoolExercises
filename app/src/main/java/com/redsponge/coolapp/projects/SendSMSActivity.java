@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import com.example.coolapp.R;
+import com.redsponge.coolapp.R;
 
 public class SendSMSActivity extends Activity {
 

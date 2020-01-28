@@ -1,4 +1,4 @@
-package com.example.coolapp;
+package com.redsponge.coolapp;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.coolapp", appContext.getPackageName());
+        assertEquals("com.redsponge.coolapp", appContext.getPackageName());
     }
 }

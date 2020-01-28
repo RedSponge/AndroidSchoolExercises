@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.coolapp.R;
+import com.redsponge.coolapp.R;
 
 import java.util.Locale;
 import java.util.Random;

@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.coolapp.R;
+import com.redsponge.coolapp.R;
 import com.redsponge.coolapp.projects.math.MathDifficulty;
 import com.redsponge.coolapp.projects.math.Operand;
 import com.redsponge.coolapp.projects.math.Operator;

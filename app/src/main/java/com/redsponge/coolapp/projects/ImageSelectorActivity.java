@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.coolapp.R;
+import com.redsponge.coolapp.R;
 
 public class ImageSelectorActivity extends Activity {
 

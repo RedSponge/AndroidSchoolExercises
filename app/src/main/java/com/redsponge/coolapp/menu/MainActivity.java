@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.coolapp.R;
+import com.redsponge.coolapp.R;
 import com.redsponge.coolapp.util.toast.SingleToast;
 
 public class MainActivity extends Activity {
@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.i("MainActivity", "onCreate: test");
         listViewContents = findViewById(R.id.listViewContents);
         adapter = new MainListAdapter(this);
 
@@ -32,6 +33,12 @@ public class MainActivity extends Activity {
         });
         SingleToast.getInstance().addConfig(new SingleToast.ToastConfig(this, "Message B", Toast.LENGTH_LONG));
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("MainActivity", "onPause: Paused");
     }
 
     private void setupMainTable() {
