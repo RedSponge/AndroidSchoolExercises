@@ -68,6 +68,8 @@ public class CookieClickerActivity extends Activity {
             }, (d, w) -> {
                 super.onBackPressed();
             });
+        } else {
+            super.onBackPressed();
         }
     }
 
@@ -102,5 +104,17 @@ public class CookieClickerActivity extends Activity {
     public void saveCookies(View view) {
         saveCookies(cookieCount);
         saveToast.show();
+    }
+
+    public void loadCookies(View view) {
+        cookieCount = getSavedCookies();
+        updateCookieDisplay();
+    }
+
+
+    public void clearCookies(View view) {
+        cookieCount = 0;
+        updateCookieDisplay();
+        saveCookies(0);
     }
 }

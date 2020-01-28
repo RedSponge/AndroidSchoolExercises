@@ -49,4 +49,26 @@
         android:layout_marginRight="100dp"
         android:onClick="saveCookies"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Load"
+        android:fontFamily="monospace"
+        android:textSize="32sp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:onClick="loadCookies"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Clear"
+        android:fontFamily="monospace"
+        android:textSize="32sp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:onClick="clearCookies"/>
+
 </LinearLayout>
