@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.redsponge.coolapp.R;
 import com.redsponge.coolapp.util.alert.AlertUtils;
+import com.redsponge.coolapp.util.toast.SingleToast;
 
 public class CookieClickerActivity extends Activity {
 
@@ -61,7 +62,7 @@ public class CookieClickerActivity extends Activity {
     @Override
     public void onBackPressed() {
         Log.i(TAG, "onStop: STOPPING");
-        if(cookieCount > 0) {
+        if(cookieCount != getSavedCookies()) {
             AlertUtils.showConfirmPrompt(this, "Wait a second!", "It seems you have some unsaved cookies! would you like to save them?", (d, w) -> {
                 saveCookies(cookieCount);
                 super.onBackPressed();
