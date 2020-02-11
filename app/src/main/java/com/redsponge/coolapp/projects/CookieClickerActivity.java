@@ -28,7 +28,10 @@ public class CookieClickerActivity extends Activity {
     private int cookieCount;
 
     private ImageView ivCookieDisplay;
+
     private Toast saveToast;
+    private Toast loadToast;
+    private Toast clearToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +49,19 @@ public class CookieClickerActivity extends Activity {
         updateCookieDisplay();
         if(storedCookieCount != 0) {
             AlertUtils.showConfirmPrompt(this, "Found Saved Cookies!",
-                    "After searching throuroughly in the cabinet we found " + storedCookieCount + " cookies! Load them? (no means losing them forever!)",
+                    "After searching thoroughly in the cabinet we found " + storedCookieCount + " cookies! Load them? (no means losing them forever!)",
                     (dialog, which) ->{
                         cookieCount = storedCookieCount;
                         updateCookieDisplay();
                     },
                     (dialog, which) -> {
-                        saveCookies(0);
+                        clearCookies(null);
                     });
         }
 
         saveToast = Toast.makeText(this, "Saved Cookies!", Toast.LENGTH_LONG);
+        loadToast = Toast.makeText(this, "Loaded Cookies!", Toast.LENGTH_LONG);
+        clearToast = Toast.makeText(this, "Cleared Cookies!", Toast.LENGTH_LONG);
     }
 
     @Override
@@ -108,8 +113,18 @@ public class CookieClickerActivity extends Activity {
     }
 
     public void loadCookies(View view) {
-        cookieCount = getSavedCookies();
-        updateCookieDisplay();
+        int savedCookieCount = getSavedCookies();
+        if(savedCookieCount < cookieCount) {
+            AlertUtils.showConfirmPrompt(this, "Woah There", "You have less cookies (" + savedCookieCount + "} stored than in the game! Are you sure?", (d, w) -> {
+                cookieCount = savedCookieCount;
+                updateCookieDisplay();
+                loadToast.show();
+            }, null);
+        } else {
+            cookieCount = savedCookieCount;
+            updateCookieDisplay();
+            loadToast.show();
+        }
     }
 
 
@@ -117,5 +132,6 @@ public class CookieClickerActivity extends Activity {
         cookieCount = 0;
         updateCookieDisplay();
         saveCookies(0);
+        clearToast.show();
     }
 }

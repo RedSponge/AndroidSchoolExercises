@@ -2,7 +2,9 @@ package com.redsponge.coolapp.menu;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,7 +29,6 @@ public class MainActivity extends Activity {
         listViewContents.setAdapter(adapter);
 
         setupMainTable();
-
     }
 
     @Override

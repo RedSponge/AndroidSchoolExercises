@@ -117,7 +117,7 @@ public class MathChallengeActivity extends Activity {
     }
 
     private void updateGuessDisplay() {
-        tvAnswerDisplay.setText("" + numberGuess);
+        tvAnswerDisplay.setText(String.format(Locale.CANADA, "%,d", numberGuess));
         tvAnswerDisplay.setTextColor(Color.BLACK);
     }
 
