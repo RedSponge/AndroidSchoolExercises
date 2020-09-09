@@ -3,6 +3,7 @@ package com.redsponge.coolapp.menu;
 import com.redsponge.coolapp.projects.CatchTheButtonActivity;
 import com.redsponge.coolapp.projects.ColourBarsActivity;
 import com.redsponge.coolapp.projects.CookieClickerActivity;
+import com.redsponge.coolapp.projects.ImageManipulationActivity;
 import com.redsponge.coolapp.projects.ImageSelectorActivity;
 import com.redsponge.coolapp.projects.ImageCapturerActivity;
 import com.redsponge.coolapp.projects.MathChallengeActivity;
@@ -21,7 +22,8 @@ public class MenuEntries {
             new MenuEntry("Image Selector", "3.5", ImageSelectorActivity.class),
             new MenuEntry("Math Challenge", "4", MathChallengeActivity.class),
             new MenuEntry("Cookie Clicker", "5", CookieClickerActivity.class),
-            new MenuEntry("Colour Bars", "6", ColourBarsActivity.class)
+            new MenuEntry("Colour Bars", "6", ColourBarsActivity.class),
+            new MenuEntry("Image Manipulation", "7", ImageManipulationActivity.class),
     };
 
 }

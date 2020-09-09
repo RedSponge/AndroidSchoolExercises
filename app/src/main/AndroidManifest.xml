@@ -25,6 +25,7 @@
         <activity android:name="com.redsponge.coolapp.projects.MathChallengeActivity"/>
         <activity android:name="com.redsponge.coolapp.projects.CookieClickerActivity"/>
         <activity android:name="com.redsponge.coolapp.projects.ColourBarsActivity"/>
+        <activity android:name="com.redsponge.coolapp.projects.ImageManipulationActivity"/>
     </application>
 
 

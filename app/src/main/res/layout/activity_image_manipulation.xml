@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1"
+        android:text="Image Manipulation"
+        android:gravity="center"
+        android:textSize="32sp"
+        />
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="7">
+        <TableRow
+            android:weightSum="8">
+            <TextView
+                android:id="@+id/tvRedDisplay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="Red"
+                android:textSize="24sp"
+                android:textColor="#FF0000"
+                android:gravity="center"
+                />
+            <SeekBar
+                android:id="@+id/sbRed"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4" android:layout_marginLeft="30dp" android:layout_marginRight="30dp"
+                android:min="0"
+                android:max="255"
+                android:progress="255"/>
+            <EditText
+                android:id="@+id/etRed"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:inputType="number"
+                android:hint="000"
+                android:gravity="center"
+                android:maxLength="3"
+                />
+        </TableRow>
+
+        <TableRow
+            android:weightSum="8">
+            <TextView
+                android:id="@+id/tvGreenDisplay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="Green"
+                android:textSize="24sp"
+                android:textColor="#00FF00"
+                android:gravity="center"
+                />
+            <SeekBar
+                android:id="@+id/sbGreen"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4" android:layout_marginLeft="30dp" android:layout_marginRight="30dp"
+                android:min="0"
+                android:max="255"
+                android:progress="255"/>
+            <EditText
+                android:id="@+id/etGreen"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:inputType="number"
+                android:hint="000"
+                android:maxLength="3"
+                />
+        </TableRow>
+
+        <TableRow
+            android:weightSum="8">
+            <TextView
+                android:id="@+id/tvBlueDisplay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="Blue"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textColor="#0000FF"
+                />
+            <SeekBar
+                android:id="@+id/sbBlue"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4" android:layout_marginLeft="30dp" android:layout_marginRight="30dp"
+                android:min="0"
+                android:max="255"
+                android:progress="255"/>
+            <EditText
+                android:id="@+id/etBlue"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:inputType="number"
+                android:hint="000"
+                android:maxLength="3"
+                />
+        </TableRow>
+
+        <TableRow
+            android:weightSum="8">
+            <TextView
+                android:id="@+id/tvAlphaDisplay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="Alpha"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textColor="#77000000"
+                />
+            <SeekBar
+                android:id="@+id/sbAlpha"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4" android:layout_marginLeft="30dp" android:layout_marginRight="30dp"
+                android:min="0"
+                android:max="255"
+                android:progress="255"/>
+            <EditText
+                android:id="@+id/etAlpha"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:inputType="number"
+                android:hint="000"
+                android:maxLength="3"
+                />
+        </TableRow>
+    </TableLayout>
+
+    <ImageView
+        android:id="@+id/ivColourAffected"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="3"
+        android:src="@drawable/cookie"
+        />
+
+</LinearLayout>
