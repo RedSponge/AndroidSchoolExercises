@@ -1,5 +1,6 @@
 package com.redsponge.coolapp.menu;
 
+import com.redsponge.coolapp.projects.BroadcastingActivity;
 import com.redsponge.coolapp.projects.CatchTheButtonActivity;
 import com.redsponge.coolapp.projects.ColourBarsActivity;
 import com.redsponge.coolapp.projects.CookieClickerActivity;
@@ -24,6 +25,7 @@ public class MenuEntries {
             new MenuEntry("Cookie Clicker", "5", CookieClickerActivity.class),
             new MenuEntry("Colour Bars", "6", ColourBarsActivity.class),
             new MenuEntry("Image Manipulation", "7", ImageManipulationActivity.class),
+            new MenuEntry("Battery Broadcast", "8", BroadcastingActivity.class)
     };
 
 }

@@ -7,4 +7,5 @@
     
     <string name="shared_preferences_name">RedSpongeAppPreferences</string>
     <string name="shared_preferences_cookie_clicker_cookie_count">CookieClickerCookieCount</string>
+    <string name="battery_life">Battery life is: %d</string>
 </resources>
